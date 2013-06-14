@@ -13,7 +13,6 @@ class FlashCard
 		print_definition
 
 		user_input = prompt "Guess: "
-		user_input.chomp.downcase
 
 		until (@card.word.strip.downcase == user_input.chomp.downcase || 'exit' == user_input.chomp.downcase)
 			puts "Incorrect!  Try again.\n"
