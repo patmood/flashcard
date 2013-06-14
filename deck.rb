@@ -16,9 +16,21 @@ class Deck
       @cards << Card.new({description: input_array[0], word: input_array[1]})
     end
 
+    @last_card = get_rand_card
+
+  end
+
+  def get_rand_card
+    @cards[(rand(0..@cards.length))]
   end
 
   def get_card
-    @cards[(rand(0..@cards.length))]
+    @new_card = get_rand_card
+    if @new_card != @last_card
+      @last_card = @new_card
+      @new_card
+    else
+      get_card
+    end
   end
 end

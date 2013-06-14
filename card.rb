@@ -7,8 +7,7 @@ class Card
   end
 
   def to_s
-    "#{description}"
-    "#{word}"
+    "#{description} #{word}"
   end
 end
 
