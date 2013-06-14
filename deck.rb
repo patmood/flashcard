@@ -23,13 +23,11 @@ class Deck
   def get_card
     @cards_shown += 1
     if @cards_shown%2 == 0 || @cards_shown < @cards.length
-      puts "lease displays"
       card = least_displays
       card.increase_display_count
       @cards = @cards.shuffle
       card
     else
-      puts "Most guesses"
       card = most_guesses
       card.reset_guess_count
       @cards = @cards.shuffle
