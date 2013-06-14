@@ -3,6 +3,7 @@ class Deck
   def initialize
     @cards = []
     @file_contents = []
+    @cards_shown = 0
   end
 
   def load_deck(filename)
@@ -15,15 +16,24 @@ class Deck
       @cards << Card.new({description: input_array[0], word: input_array[1]})
     end
 
+    @cards = @cards.shuffle
+
   end
 
   def get_card
-    if rand(2) == 1
-      card = most_guesses
-      card.reset_guess_count
+    @cards_shown += 1
+    if @cards_shown%2 == 0 || @cards_shown < @cards.length
+      puts "lease displays"
+      card = least_displays
+      card.increase_display_count
+      @cards = @cards.shuffle
       card
     else
-      least_displays
+      puts "Most guesses"
+      card = most_guesses
+      card.reset_guess_count
+      @cards = @cards.shuffle
+      card
     end
   end
 
