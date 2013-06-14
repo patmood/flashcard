@@ -2,6 +2,7 @@ require_relative 'deck'
 require_relative 'card'
 require 'csv'
 
+
 class FlashCard
 	def initialize
 		@flashcards = Deck.new
@@ -10,7 +11,7 @@ class FlashCard
 
 	def play
 		@card = @flashcards.get_card
-		print_definition
+		print_description
 		user_prompt
 		exit
 	end
@@ -27,7 +28,7 @@ class FlashCard
 	end
 
 	def exit_or_equal
-		(@user_input == @card.word.strip.downcase  || @user_input) == 'exit'
+		(@user_input == @card.word || @user_input == 'exit')
 	end
 
 	def exit
@@ -38,12 +39,12 @@ class FlashCard
 	end
 
 	def prompt(*args)
-	    print(*args)
-	    gets.chomp
+		print(*args)
+		gets.chomp
 	end
 
-	def print_definition
-		puts "Definition\n\n#{@card.description}\n"
+	def print_description
+		puts "Definition:\n#{@card.description}\n"
 	end
 end
 
