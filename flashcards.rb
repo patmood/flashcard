@@ -11,16 +11,27 @@ class FlashCard
 	def play
 		@card = @flashcards.get_card
 		print_definition
+		user_prompt
+		exit
+	end
 
-		user_input = prompt "Guess: "
+	private
 
-		until (@card.word.strip.downcase == user_input.chomp.downcase || 'exit' == user_input.chomp.downcase)
-			puts "Incorrect!  Try again.\n"
-			user_input = prompt "Guess:"
-			puts ""
+	def user_prompt
+		@user_input = prompt "Guess: "
+
+		until exit_or_equal
+			puts "Incorrect!  Try again.\n\n"
+			@user_input = prompt "Guess: "
 		end
+	end
 
-		unless 'exit' == user_input.chomp
+	def exit_or_equal
+		(@user_input == @card.word.strip.downcase  || @user_input) == 'exit'
+	end
+
+	def exit
+		unless @user_input.chomp == 'exit'
 			puts "Correct!\n\n"
 			play
 		end
@@ -28,7 +39,7 @@ class FlashCard
 
 	def prompt(*args)
 	    print(*args)
-	    gets
+	    gets.chomp
 	end
 
 	def print_definition

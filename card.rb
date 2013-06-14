@@ -4,6 +4,7 @@ class Card
   def initialize(arrgs = {})
     @description = arrgs[:description]
     @word = arrgs[:word]
+    # @count = arrgs[:count]
   end
 
   def to_s
