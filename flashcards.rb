@@ -6,7 +6,7 @@ require 'csv'
 class FlashCard
 	def initialize
 		@flashcards = Deck.new
-		@flashcards.load_deck('flashcard_samples.txt')
+		@flashcards.load_deck(AGRV)
 	end
 
 	def play
