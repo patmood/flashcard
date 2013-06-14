@@ -15,21 +15,24 @@ class Deck
       @cards << Card.new({description: input_array[0], word: input_array[1]})
     end
 
-    @last_card = get_rand_card
-
-  end
-
-  def get_rand_card
-    @cards[(rand(0..@cards.length))]
   end
 
   def get_card
-    new_card = get_rand_card
-    if new_card != last_card
-      last_card = new_card
-      new_card
+    if rand(2) == 1
+      card = most_guesses
+      card.reset_guess_count
+      card
     else
-      get_card
+      least_displays
     end
   end
+
+  def most_guesses
+    @cards.max_by { |a| a.guess_count }
+  end
+
+  def least_displays
+    @cards.min_by { |a| a.display_count }
+  end
+
 end
